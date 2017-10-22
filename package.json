@@ -13,4 +13,7 @@
     "type-of-is": "^3.5.1",
     "ytdl-core": "^0.15.0"
   }
+  "scripts": {
+    "start": "node bot.js",
+  },
 }
