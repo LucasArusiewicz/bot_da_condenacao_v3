@@ -1,0 +1,16 @@
+{
+  "name": "bot_da_condenacao_v3",
+  "version": "1.0.0",
+  "description": "Mordidinha",
+  "main": "bot.js",
+  "author": "Lucas Arusiewicz Lacerda",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "discord.js": "^11.1.0",
+    "opusscript": "0.0.3",
+    "request": "^2.83.0",
+    "type-of-is": "^3.5.1",
+    "ytdl-core": "^0.15.0"
+  }
+}

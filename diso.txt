@@ -1,0 +1,15 @@
+npm install discord.js
+npm install discord.js-commando --save
+
+npm install request
+npm install cheerio
+npm install scraperjs
+npm install type-of-is
+
+res
+jscontroller
+
+tag_list sortable
+blockdoby
+
+http://rule34-data-002.paheal.net/_images/
