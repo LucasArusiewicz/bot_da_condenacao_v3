@@ -11,9 +11,8 @@
     "opusscript": "0.0.3",
     "request": "^2.83.0",
     "type-of-is": "^3.5.1",
-    "ytdl-core": "^0.15.0"
   }
   "scripts": {
-    "start": "npm cache clean",
+    "start": "node bot.js",
   },
 }
