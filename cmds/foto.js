@@ -79,6 +79,14 @@ module.exports.run = async (bot, message, args) => {
                     if (numDeFotosEnviadas < numDeFotos) {
                         
                         var s = element.conteudo.toString();
+                        s = s.replace(/\\n/g, "\\n")
+                                .replace(/\\'/g, "\\'")
+                                .replace(/\\"/g, '\\"')
+                                .replace(/\\&/g, "\\&")
+                                .replace(/\\r/g, "\\r")
+                                .replace(/\\t/g, "\\t")
+                                .replace(/\\b/g, "\\b")
+                                .replace(/\\f/g, "\\f");
                         element.titulo = '' + (JSON.parse(s)).pt;
                         element.imagem = '' + (JSON.parse(s)).ou;
                         element.fonte = '' + (JSON.parse(s)).ru;
