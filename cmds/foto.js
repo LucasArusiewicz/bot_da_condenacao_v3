@@ -77,9 +77,11 @@ module.exports.run = async (bot, message, args) => {
                 urls.forEach(function (element) {
 
                     if (numDeFotosEnviadas < numDeFotos) {
-                        element.titulo = '' + (JSON.parse(element.conteudo)).pt;
-                        element.imagem = '' + (JSON.parse(element.conteudo)).ou;
-                        element.fonte = '' + (JSON.parse(element.conteudo)).ru;
+                        
+                        var s = element.conteudo.toString();
+                        element.titulo = '' + (JSON.parse(s)).pt;
+                        element.imagem = '' + (JSON.parse(s)).ou;
+                        element.fonte = '' + (JSON.parse(s)).ru;
 
                         //console.log(JSON.parse(element.conteudo));
 
