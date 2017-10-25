@@ -26,7 +26,7 @@ fs.readdir("./cmds/", (err, files) => {
     });
 });
 
-bot.on('ready', async(function() {
+bot.on('ready', async (function() {
   
   //Seta o que esta jogando.
   bot.user.setGame("On na Azura para sempre!");
@@ -38,7 +38,7 @@ bot.on('ready', async(function() {
 
 }));
 
-bot.on('message', async(function(message){
+bot.on('message', async (function(message){
 
     if (message.author.equals(bot.user)) return;
 
