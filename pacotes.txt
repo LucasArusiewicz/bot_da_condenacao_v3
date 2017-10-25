@@ -1,0 +1,7 @@
+npm install discord.js --save
+npm install discord.js-commando --save
+
+npm install request --save
+npm install cheerio --save
+npm install type-of-is --save
+npm install asyncawait --save
