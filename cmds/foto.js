@@ -1,12 +1,13 @@
+const async = require('asyncawait/async');
+const await = require('asyncawait/await');
 const Request = module.require('request');
 const Cheerio = module.require('cheerio');
 const Querystring = module.require('querystring');
 const Discord = module.require("discord.js");
 const Type = module.require('type-of-is');
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async ((bot, message, args) => {
     if (Object.keys(args).length === 0) {
-
         var embed = new Discord.RichEmbed();
         embed.setColor('#' + Math.floor(Math.random() * 16777215).toString(16));
         embed.setTitle('Comando /foto');
@@ -17,25 +18,21 @@ module.exports.run = async (bot, message, args) => {
         message.channel.sendEmbed(embed);
         return;
     } else if (Object.keys(args).length > 0) {
-
         let indice = 0;
         let numDeFotos = 1;
         let numDeFotosEnviadas = 0;
+        
         if ((Type.is(parseInt(args[0]), Number) && (parseInt(args[0]) > 0 && parseInt(args[0]) <= 100)) && Object.keys(args).length > 1) {
             indice = 1;
             numDeFotos = args[0];
         }
-
+        
         let link = 'https://www.google.com.br/search?q='
-
         var argsPesquisa = '';
-
         for (i = indice; i < Object.keys(args).length; i++) {
             argsPesquisa += args[i] + ' ';
         }
         argsPesquisa = argsPesquisa.substring(0, (argsPesquisa.length - 1))
-
-
         var pesquisa = Querystring.stringify({ query: argsPesquisa });
         link += ('' + pesquisa).substring(6);
         link += '&source=lnms&tbm=isch';
@@ -51,12 +48,10 @@ module.exports.run = async (bot, message, args) => {
         Request(opti, function (err, resp, body) {
             if (!err && resp.statusCode == 200) {
                 $ = Cheerio.load(body);
-
                 var texto = '' + $('body').text();
                 texto = texto.substring(texto.search('Resultados da pesquisa ') + 'Resultados da pesquisa '.length);
 
                 var urls = [];
-
                 while (texto.length > 10) {
                     var informacoes = {
                         titulo: undefined,
@@ -71,13 +66,8 @@ module.exports.run = async (bot, message, args) => {
                     texto = texto.substring(informacoes.conteudo.length);
                     urls.push(informacoes);
                 }
-                
-                console.log(urls);
-
                 urls.forEach(function (element) {
-
                     if (numDeFotosEnviadas < numDeFotos) {
-                        
                         var s = element.conteudo.toString();
                         s = s.replace(/\\n/g, "\\n")
                                 .replace(/\\'/g, "\\'")
@@ -90,9 +80,7 @@ module.exports.run = async (bot, message, args) => {
                         element.titulo = '' + (JSON.parse(s)).pt;
                         element.imagem = '' + (JSON.parse(s)).ou;
                         element.fonte = '' + (JSON.parse(s)).ru;
-
-                        //console.log(JSON.parse(element.conteudo));
-
+                        
                         var embed = new Discord.RichEmbed();
                         embed.setColor('#' + Math.floor(Math.random() * 16777215).toString(16));
                         embed.setTitle(element.titulo);
@@ -100,19 +88,17 @@ module.exports.run = async (bot, message, args) => {
                         embed.setImage(element.imagem);
                         embed.addField(`Info:`, `${element.info}`);
                         message.channel.sendEmbed(embed);
-
                         numDeFotosEnviadas++;
                     } else {
                         return;
                     }
                 }, this);
-
             } else {
                 throw "Error: " + resp.statusCode;
             }
         });
     }
-}
+});
 
 module.exports.help = {
     name: "foto"
