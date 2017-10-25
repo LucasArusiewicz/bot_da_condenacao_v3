@@ -1,10 +1,13 @@
+//Constantes
+const async = require('asyncawait/async');
+const await = require('asyncawait/await');
 const config = require("./config.json");
-const Discord = require("discord.js");
-const YTDL = require("ytdl-core");
-const fs = require("fs");
+const Discord = require('discord.js');
+const fs = require('fs');
 const prefix = config.prefix;
-
 const bot = new Discord.Client();
+
+//Carrega comandos da pasta cmds
 bot.commands = new Discord.Collection();
 fs.readdir("./cmds/", (err, files) => {
     if(err) console.error(err);
@@ -23,20 +26,19 @@ fs.readdir("./cmds/", (err, files) => {
     });
 });
 
-bot.on("ready", async () => {
-  bot.user.setGame("JS")
-
+bot.on('ready', async(function() {
+  
+  //Seta o que esta jogando.
+  bot.user.setGame("On na Azura para sempre!");
+  
   console.log(`Condenação iniciada!`);
   console.log(`Total de Canais: ${bot.channels.size}`);
   console.log(`Total de Servidores: ${bot.guilds.size}`);
   console.log(`Total de Usuários: ${bot.users.size}`);
-  
-  //mostra collection
-  //console.log(bot.commands);
 
-});
+}));
 
-bot.on("message", async message => {
+bot.on('message', async(function(message){
 
     if (message.author.equals(bot.user)) return;
 
@@ -50,6 +52,6 @@ bot.on("message", async message => {
     if(cmd){
         cmd.run(bot, message, args);
     } 
-});
+}));
 
 bot.login(config.token);
