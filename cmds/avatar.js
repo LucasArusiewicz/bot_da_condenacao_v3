@@ -1,7 +1,7 @@
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');
 
-module.exports.run = async (function(bot, message, args) {
+module.exports.run = async(function(bot, message, args) {
     let msg = await (message.channel.send("Carregando imagem..."));
      await (message.channel.send({files: [
         {
@@ -11,6 +11,7 @@ module.exports.run = async (function(bot, message, args) {
     ]}));
     msg.delete();
 });
+
 module.exports.help = {
     name: "avatar"
 }
